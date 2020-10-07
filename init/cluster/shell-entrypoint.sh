@@ -18,9 +18,11 @@ const mysqlUser = '${MYSQL_USER}';
 const mysqlPassword = '${MYSQL_PASSWORD}';
 const mysqlPort = '${MYSQL_PORT}';
 const clusterName = '${MYSQL_CLUSTER_NAME}';
+const node2 = "mysql_node2:" + mysqlPort
+const node3 = "mysql_node3:" + mysqlPort
 const cluster = dba.createCluster(clusterName);
-cluster.addInstance({user: mysqlUser, password: mysqlPassword, host: 'mysql_node2:3306'}, {recoveryMethod: 'incremental'});
-cluster.addInstance({user: mysqlUser, password: mysqlPassword, host: 'mysql_node3:3306'}, {recoveryMethod: 'incremental'});
+cluster.addInstance({user: mysqlUser, password: mysqlPassword, host: node2}, {recoveryMethod: 'incremental'});
+cluster.addInstance({user: mysqlUser, password: mysqlPassword, host: node3}, {recoveryMethod: 'incremental'});
 EOF
 
 echo "Attempting to create cluster."
