@@ -16,7 +16,8 @@ CREATE USER 'admin'@'%' IDENTIFIED BY 'admin';
 GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%';
 
 --# create test database / create t1 table and insert 3 rows
---CREATE database TEST; use TEST;
+--CREATE database TEST;
+-- USE TEST;
 --CREATE TABLE t1 (id INT NOT NULL PRIMARY KEY) ENGINE=InnoDB;
 --INSERT INTO TEST.t1 VALUES(1);
 --INSERT INTO TEST.t1 VALUES(2);
