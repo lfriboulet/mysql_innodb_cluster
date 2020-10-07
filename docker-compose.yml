@@ -1,0 +1,92 @@
+version: '3.8'
+services:
+  mysql_node1:
+    container_name: mysql_node1
+    hostname: mysql_node1
+    image: mysql/mysql-server:8.0.17
+    command: ["mysqld",
+               "--server_id=1",
+               "--gtid_mode=ON",
+               "--binlog_checksum=NONE",
+               "--enforce_gtid_consistency=ON",
+               "--relay-log=mysql_node1-relay-bin"]
+    environment:
+      MYSQL_ROOT_PASSWORD: VDZwJWF0UFNEbkeWYNewNode1
+      GROUP_REPLICATION_GROUP_NAME: C55153C1-1574-4972-BF06-7332D6AD46A7
+    networks:
+      backing_net:
+        ipv4_address: 172.16.238.11
+    volumes:
+    - ./init/db:/docker-entrypoint-initdb.d
+    - data1-volume:/var/lib/mysql
+  mysql_node2:
+    container_name: mysql_node2
+    hostname: mysql_node2
+    image: mysql/mysql-server:8.0.17
+    command: ["mysqld",
+               "--server_id=2",
+               "--gtid_mode=ON",
+               "--binlog_checksum=NONE",
+               "--enforce_gtid_consistency=ON",
+               "--relay-log=mysql_node2-relay-bin"]
+    environment:
+      MYSQL_ROOT_PASSWORD: VDZwJWF0UFNEbkeWYNewNode2
+      GROUP_REPLICATION_GROUP_NAME: C55153C1-1574-4972-BF06-7332D6AD46A7
+    networks:
+      backing_net:
+        ipv4_address: 172.16.238.12
+    volumes:
+#     - ./init/db:/docker-entrypoint-initdb.d
+     - data2-volume:/var/lib/mysql
+  mysql_node3:
+    container_name: mysql_node3
+    hostname: mysql_node3
+    image: mysql/mysql-server:8.0.17
+    command: ["mysqld",
+               "--server_id=3",
+               "--gtid_mode=ON",
+               "--binlog_checksum=NONE",
+               "--enforce_gtid_consistency=ON",
+               "--relay-log=mysql_node3-relay-bin"]
+    environment:
+      MYSQL_ROOT_PASSWORD: VDZwJWF0UFNEbkeWYNewNode3
+      GROUP_REPLICATION_GROUP_NAME: C55153C1-1574-4972-BF06-7332D6AD46A7
+    networks:
+      backing_net:
+        ipv4_address: 172.16.238.13
+    volumes:
+#     - ./init/db:/docker-entrypoint-initdb.d
+     - data3-volume:/var/lib/mysql
+  mysql_shell:
+    container_name: mysql_shell
+    image: mysql/mysql-server:8.0.17
+    entrypoint: ["/bin/shell-entrypoint"]
+    environment: &other-environment
+      - MYSQL_USER=sagemcom
+      - MYSQL_PASSWORD=sagemcom$$123
+      - MYSQL_HOST=mysql_node1
+      - MYSQL_PORT=3306
+      - MYSQL_CLUSTER_NAME=cluster1
+      - MYSQL_CLUSTER_OPTIONS={}
+      - MYSQL_INNODB_NUM_MEMBERS=3
+    volumes:
+      - ./init/cluster/shell-entrypoint.sh:/bin/shell-entrypoint
+    networks:
+      backing_net:
+        ipv4_address: 172.16.238.14
+    depends_on: &other-depends
+      - mysql_node1
+      - mysql_node2
+      - mysql_node3
+networks:
+  backing_net:
+    driver: bridge
+    enable_ipv6: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+volumes:
+  data1-volume:
+  data2-volume:
+  data3-volume:
