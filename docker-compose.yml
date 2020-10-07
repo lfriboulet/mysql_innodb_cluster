@@ -3,7 +3,7 @@ services:
   mysql_node1:
     container_name: mysql_node1
     hostname: mysql_node1
-    image: mysql/mysql-server:8.0.17
+    image: mysql/mysql-server:8.0.21
     command: ["mysqld",
                "--server_id=1",
                "--gtid_mode=ON",
@@ -22,7 +22,7 @@ services:
   mysql_node2:
     container_name: mysql_node2
     hostname: mysql_node2
-    image: mysql/mysql-server:8.0.17
+    image: mysql/mysql-server:8.0.21
     command: ["mysqld",
                "--server_id=2",
                "--gtid_mode=ON",
@@ -41,7 +41,7 @@ services:
   mysql_node3:
     container_name: mysql_node3
     hostname: mysql_node3
-    image: mysql/mysql-server:8.0.17
+    image: mysql/mysql-server:8.0.21
     command: ["mysqld",
                "--server_id=3",
                "--gtid_mode=ON",
@@ -59,7 +59,7 @@ services:
      - data3-volume:/var/lib/mysql
   mysql_shell:
     container_name: mysql_shell
-    image: mysql/mysql-server:8.0.17
+    image: mysql/mysql-server:8.0.21
     entrypoint: ["/bin/shell-entrypoint"]
     environment: &other-environment
       - MYSQL_USER=gradmin
@@ -81,6 +81,7 @@ services:
 networks:
   backing_net:
     driver: bridge
+    enable_ipv6: false
     ipam:
       driver: default
       config:
