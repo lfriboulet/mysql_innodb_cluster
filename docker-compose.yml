@@ -81,7 +81,6 @@ services:
 networks:
   backing_net:
     driver: bridge
-    enable_ipv6: false
     ipam:
       driver: default
       config:
