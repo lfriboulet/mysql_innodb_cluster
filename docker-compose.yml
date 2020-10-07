@@ -36,7 +36,7 @@ services:
       backing_net:
         ipv4_address: 172.16.238.12
     volumes:
-#     - ./init/db:/docker-entrypoint-initdb.d
+     - ./init/db:/docker-entrypoint-initdb.d
      - data2-volume:/var/lib/mysql
   mysql_node3:
     container_name: mysql_node3
@@ -55,15 +55,15 @@ services:
       backing_net:
         ipv4_address: 172.16.238.13
     volumes:
-#     - ./init/db:/docker-entrypoint-initdb.d
+     - ./init/db:/docker-entrypoint-initdb.d
      - data3-volume:/var/lib/mysql
   mysql_shell:
     container_name: mysql_shell
     image: mysql/mysql-server:8.0.17
     entrypoint: ["/bin/shell-entrypoint"]
     environment: &other-environment
-      - MYSQL_USER=sagemcom
-      - MYSQL_PASSWORD=sagemcom$$123
+      - MYSQL_USER=gradmin
+      - MYSQL_PASSWORD=gradmin
       - MYSQL_HOST=mysql_node1
       - MYSQL_PORT=3306
       - MYSQL_CLUSTER_NAME=cluster1
