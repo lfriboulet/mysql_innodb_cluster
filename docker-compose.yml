@@ -13,7 +13,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: VDZwJWF0UFNEbkeWYNewNode1
       GROUP_REPLICATION_GROUP_NAME: C55153C1-1574-4972-BF06-7332D6AD46A7
-      GROUP_REPLICATION_BOOTSTRAP_GROUP: true
+      GROUP_REPLICATION_BOOTSTRAP_GROUP: 1
     networks:
       backing_net:
         ipv4_address: 172.16.238.11
