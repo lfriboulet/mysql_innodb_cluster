@@ -17,7 +17,7 @@ services:
       backing_net:
         ipv4_address: 172.16.238.11
     volumes:
-    - /home/lfr/mysql_innodb_cluster/init/db:/docker-entrypoint-initdb.d
+    - ./init/db:/docker-entrypoint-initdb.d
     - data1-volume:/var/lib/mysql
   mysql_node2:
     container_name: mysql_node2
@@ -36,7 +36,7 @@ services:
       backing_net:
         ipv4_address: 172.16.238.12
     volumes:
-     - /home/lfr/mysql_innodb_cluster/init/db:/docker-entrypoint-initdb.d
+     - ./init/db:/docker-entrypoint-initdb.d
      - data2-volume:/var/lib/mysql
   mysql_node3:
     container_name: mysql_node3
@@ -55,7 +55,7 @@ services:
       backing_net:
         ipv4_address: 172.16.238.13
     volumes:
-     - /home/lfr/mysql_innodb_cluster/init/db:/docker-entrypoint-initdb.d
+     - ./init/db:/docker-entrypoint-initdb.d
      - data3-volume:/var/lib/mysql
   mysql_shell:
     container_name: mysql_shell
@@ -70,7 +70,7 @@ services:
       - MYSQL_CLUSTER_OPTIONS={}
       - MYSQL_INNODB_NUM_MEMBERS=3
     volumes:
-      - /home/lfr/mysql_innodb_cluster/init/cluster/shell-entrypoint.sh:/bin/shell-entrypoint
+      - ./init/cluster/shell-entrypoint.sh:/bin/shell-entrypoint
     networks:
       backing_net:
         ipv4_address: 172.16.238.14
