@@ -9,7 +9,7 @@ services:
                "--gtid_mode=ON",
                "--binlog_checksum=NONE",
                "--enforce_gtid_consistency=ON",
-               "--relay-log=mysql_node1-relay-bin"
+               "--relay-log=mysql_node1-relay-bin",
                "--loose-group-replication-start-on-boot=OFF",
                "--loose-group-replication-group-name=C55153C1-1574-4972-BF06-7332D6AD46A7",
                "--loose-group-replication-local-address=mysql_node1:33061",
@@ -35,7 +35,7 @@ services:
                "--gtid_mode=ON",
                "--binlog_checksum=NONE",
                "--enforce_gtid_consistency=ON",
-               "--relay-log=mysql_node2-relay-bin"
+               "--relay-log=mysql_node2-relay-bin",
                "--loose-group-replication-start-on-boot=OFF",
                "--loose-group-replication-group-name=C55153C1-1574-4972-BF06-7332D6AD46A7",
                "--loose-group-replication-local-address=mysql_node2:33061",
