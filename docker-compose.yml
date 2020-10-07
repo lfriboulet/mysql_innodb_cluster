@@ -60,7 +60,7 @@ services:
   mysql_shell:
     container_name: mysql_shell
     image: mysql/mysql-server:8.0.21
-    entrypoint: ["/bin/shell-entrypoint"]
+    entrypoint: ["mysqlsh]
     environment: &other-environment
       - MYSQL_USER=gradmin
       - MYSQL_PASSWORD=gradmin
@@ -70,7 +70,7 @@ services:
       - MYSQL_CLUSTER_OPTIONS={}
       - MYSQL_INNODB_NUM_MEMBERS=3
     volumes:
-      - ./init/cluster/shell-entrypoint.sh:/bin/shell-entrypoint
+      - ./init/cluster:docker-entrypoint-initdb.d
     networks:
       backing_net:
         ipv4_address: 172.16.238.14
