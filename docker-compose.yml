@@ -39,6 +39,8 @@ services:
     volumes:
      - ./init/db:/docker-entrypoint-initdb.d
      - data2-volume:/var/lib/mysql
+    depends_on:
+      - mysql_node1
   mysql_node3:
     container_name: mysql_node3
     hostname: mysql_node3
@@ -58,6 +60,8 @@ services:
     volumes:
      - ./init/db:/docker-entrypoint-initdb.d
      - data3-volume:/var/lib/mysql
+    depends_on:
+      - mysql_node1
   mysql_shell:
     container_name: mysql_shell
     image: mysql/mysql-server:8.0.21
