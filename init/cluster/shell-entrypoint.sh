@@ -20,7 +20,7 @@ const mysqlPort = '${MYSQL_PORT}';
 const clusterName = '${MYSQL_CLUSTER_NAME}';
 const node2 = 'mysql_node2'
 const node3 = 'mysql_node3'
-const cluster = dba.createCluster(clusterName);
+const cluster = dba.createCluster(clusterName, {autoRejoinTries:5});
 cluster.addInstance({user: mysqlUser, password: mysqlPassword, host: node2}, {recoveryMethod: 'incremental'});
 cluster.addInstance({user: mysqlUser, password: mysqlPassword, host: node3}, {recoveryMethod: 'incremental'});
 EOF
