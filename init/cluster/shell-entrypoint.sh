@@ -26,7 +26,7 @@ cluster.addInstance({user: mysqlUser, password: mysqlPassword, host: node3}, {re
 EOF
 
 echo "Attempting to create cluster."
-sleep 20
+sleep 40
 until ( \
     mysqlsh \
         --user=${MYSQL_USER} \
