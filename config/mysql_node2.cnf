@@ -1,0 +1,6 @@
+[mysqld]
+server-id=2
+gtid_mode=ON
+binlog_checksum=NONE
+enforce_gtid_consistency=ON
+relay-log=mysql_node1-relay-bin
