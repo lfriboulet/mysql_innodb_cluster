@@ -13,8 +13,7 @@ services:
     volumes:
     - ./init/db:/docker-entrypoint-initdb.d
     - data1-volume:/var/lib/mysql
-#    - ./config/mysql_node1.cnf:/etc/mysql/my.cnf
-    - ./config/mysql_node1.cnf:/etc/mysql/conf.d/mysql.cnf
+    - ./config/mysql_node1.cnf:/etc/mysql/my.cnf
     - ./logs/mysql_node1:/var/log/mysql/
   mysql_node2:
     container_name: mysql_node2
@@ -29,7 +28,7 @@ services:
     volumes:
      - ./init/db:/docker-entrypoint-initdb.d
      - data2-volume:/var/lib/mysql
-     - ./config/mysql_node2.cnf:/etc/mysql/conf.d/mysql.cnf
+     - ./config/mysql_node2.cnf:/etc/mysql/my.cnf
      - ./logs/mysql_node2:/var/log/mysql/
     depends_on:
       - mysql_node1
@@ -46,7 +45,7 @@ services:
     volumes:
      - ./init/db:/docker-entrypoint-initdb.d
      - data3-volume:/var/lib/mysql
-     - ./config/mysql_node3.cnf:/etc/mysql/conf.d/mysql.cnf
+     - ./config/mysql_node3.cnf:/etc/mysql/my.cnf
      - ./logs/mysql_node3:/var/log/mysql/
     depends_on:
       - mysql_node1
