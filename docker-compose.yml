@@ -13,7 +13,8 @@ services:
     volumes:
     - ./init/db:/docker-entrypoint-initdb.d
     - data1-volume:/var/lib/mysql
-    - ./config/mysql_node1/mysql.cnf:/etc/mysql/my.cnf
+#    - ./config/mysql_node1.cnf:/etc/mysql/my.cnf
+    - ./config/mysql_node1.cnf:/etc/mysql/conf.d/mysql.cnf
     - ./logs/mysql_node1:/var/log/mysql/
   mysql_node2:
     container_name: mysql_node2
