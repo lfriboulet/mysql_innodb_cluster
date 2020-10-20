@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  mysql_shell_test:
+    container_name: mysql_shell_test
+    image: mysql/mysql-server:8.0.21
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD: 1
+#    volumes:
+#      - ./test:/docker-entrypoint-initdb.d
