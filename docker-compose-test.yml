@@ -6,5 +6,5 @@ services:
     image: mysql/mysql-server:8.0.21
     environment:
       - "MYSQL_ALLOW_EMPTY_PASSWORD=true"
-#    volumes:
-#      - ./test:/docker-entrypoint-initdb.d
+    volumes:
+      - ./test:/docker-entrypoint-initdb.d
